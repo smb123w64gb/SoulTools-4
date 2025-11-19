@@ -28,8 +28,14 @@ class SPD(object):
         
         curOff = self.dataOff
         for x in self.data:
+            if((len(x)+curOff)%self.dataOff):
+                curOff += (self.dataOff - ((len(x)+curOff)%self.dataOff))
             w32be(f,len(x)+curOff)
             curOff+=len(x)
+                
         f.seek(self.dataOff)
         for x in self.data:
+            if(f.tell()%self.dataOff):
+                f.write(b'\0'*(self.dataOff-(f.tell()%self.dataOff)))
             f.write(x)
+            
