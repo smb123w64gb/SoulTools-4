@@ -56,11 +56,11 @@ u8 test @ cancel_address;
 s32 attack_index;
 s32 attack_index2;
 u32 idk;
-if(attack_index > 0){
-attack_count = attack_index+1;
+if(attack_index > attack_count){
+attack_count = attack_index;
 }
-if(attack_index2 > 0){
-attack_count = attack_count+1;
+if(attack_index2 > attack_count){
+attack_count = attack_index2;
 }
 };
 struct vec3short{
@@ -69,10 +69,7 @@ s16 y;
 s16 z;
 };
 struct attacks {
-    u16 hitbox; //hitbox limb?? 40 40 = right leg? 80 80 = left leg ??
-    
-    u16 unk1;
-    u32 unk2;
+    u64 hitbox;
     
     vec3short normal_vec;
     vec3short normal_launch_vec;
@@ -100,12 +97,21 @@ struct attacks {
     u16 hit_effect;
     u16 counter_effect;
     
-    u16 unk_effect;
     
+    
+    u16 hurt_index1;
+    u16 hurt_index2;
+    u16 hurt_index3;
+    u16 unk_x52;
+    
+    u16 counter_alt_effect;
     u16 block_effect;
+    
     u16 block_crush_effect;
-    padding[13];
-    u8 end;
+    
+    u8 mystrySause[4];
+    
+    u16 strange_guard2;
 };
 struct KHFile{
 KHeader hdr;
@@ -113,7 +119,7 @@ moves movGroup1[hdr.moveGrpCount1];
 moves movGroup2[hdr.moveGrpCount2];
 moves hurtGroup[hdr.hurtCount];
 moves neturalGroup[hdr.neutralCount];
-attacks aChunk[attack_count];
+attacks aChunk[((hdr.throw_info-hdr.attack_list)/0x60)];
 
 };
 
