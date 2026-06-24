@@ -122,5 +122,11 @@ moves neturalGroup[hdr.neutralCount];
 attacks aChunk[((hdr.throw_info-hdr.attack_list)/0x60)];
 
 };
-
-KHFile file @ 0;
+struct KH11{
+try {
+be KHFile file @ 0;
+}catch {
+le KHFile file @ 0;
+}
+};
+KH11 test @ 0;
