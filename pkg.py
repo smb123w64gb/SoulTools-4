@@ -1,7 +1,7 @@
 import struct
 
 def u32be(file):
-    return struct.unpack(">I", file.read(4))[0]
+    return struct.unpack("<I", file.read(4))[0]
 
 def w32be(file,val):
     file.write(struct.pack(">I", val))
