@@ -13,7 +13,7 @@ pack.read(filein)
 for inx,x in enumerate(indx):
     newdata = open(files_names[inx],'rb')
     pack.data[x] = newdata.read()
-    print(pack.data[x])
+    #print(pack.data[x])
     newdata.close()
 
 fileout = open(sys.argv[3],'wb')
